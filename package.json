@@ -1,0 +1,85 @@
+{
+  "name": "react-boilerplate",
+  "engines": {
+    "node": "^6.6.0",
+    "npm": "^3.10.7"
+  },
+  "version": "1.0.0",
+  "description": "my small react boilerplate",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "babel-node scripts/build.js",
+    "build": "babel-node scripts/build.js --production",
+    "clean": "babel-node scripts/clean.js",
+    "eslint": "eslint",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TintypeMolly/react-boilerplate.git"
+  },
+  "keywords": [
+    "react",
+    "redux",
+    "react-router",
+    "boilerplate",
+    "iso",
+    "isomorphic",
+    "es6",
+    "babel",
+    "webpack"
+  ],
+  "author": "Oh Jinkyun <tintypemolly@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TintypeMolly/react-boilerplate/issues"
+  },
+  "homepage": "https://github.com/TintypeMolly/react-boilerplate#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.0",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "react-redux": "^4.4.5",
+    "react-router": "^2.8.1",
+    "react-router-redux": "^4.0.6",
+    "redux": "^3.6.0"
+  },
+  "devDependencies": {
+    "assets-webpack-plugin": "^3.4.0",
+    "babel-cli": "^6.14.0",
+    "babel-eslint": "^6.1.2",
+    "babel-loader": "^6.2.5",
+    "babel-plugin-react-transform": "^2.0.2",
+    "babel-plugin-transform-react-constant-elements": "^6.9.1",
+    "babel-plugin-transform-react-inline-elements": "^6.8.0",
+    "babel-plugin-transform-react-remove-prop-types": "^0.2.9",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-preset-latest": "^6.14.0",
+    "babel-preset-node6": "^11.0.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-stage-0": "^6.5.0",
+    "browser-sync": "^2.16.0",
+    "css-loader": "^0.25.0",
+    "deepcopy": "^0.6.3",
+    "eslint": "^3.6.0",
+    "eslint-plugin-react": "^6.3.0",
+    "extend": "^3.0.0",
+    "file-loader": "^0.9.0",
+    "fs-extra": "^0.30.0",
+    "isomorphic-style-loader": "^1.0.0",
+    "json-loader": "^0.5.4",
+    "nodemon": "^1.10.2",
+    "normalize.css": "^4.2.0",
+    "raw-loader": "^0.5.1",
+    "react-hot-loader": "^3.0.0-beta.5",
+    "react-transform-catch-errors": "^1.0.2",
+    "react-transform-hmr": "^1.0.4",
+    "redbox-react": "^1.3.1",
+    "source-map-support": "^0.4.2",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.13.2",
+    "webpack-dev-middleware": "^1.8.3",
+    "webpack-hot-middleware": "^2.12.2"
+  }
+}

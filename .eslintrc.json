@@ -1,0 +1,85 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true,
+      "jsx": true
+    },
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "react/prop-types": "off",
+    "indent": [
+      "error",
+      2
+    ],
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
+    "eqeqeq": "error",
+    "no-var": "error",
+    "radix": "error",
+    "prefer-template": "error",
+    "prefer-const": "error",
+    "brace-style": [
+      "error",
+      "1tbs",
+      {
+        "allowSingleLine": true
+      }
+    ],
+    "arrow-body-style": [
+      "error",
+      "as-needed"
+    ],
+    "arrow-parens": [
+      "error",
+      "as-needed"
+    ],
+    "comma-dangle": [
+      "error",
+      "always-multiline"
+    ],
+    "quotes": "error",
+    "jsx-quotes": "error",
+    "semi": "error",
+    "curly": "error",
+    "no-trailing-spaces": "error",
+    "camelcase": "error",
+    "eol-last": "error",
+    // spacing
+    "array-bracket-spacing": "error",
+    "arrow-spacing": "error",
+    "block-spacing": "error",
+    "comma-spacing": "error",
+    "computed-property-spacing": "error",
+    "func-call-spacing": "error",
+    "key-spacing": "error",
+    "keyword-spacing": "error",
+    "object-curly-spacing": "error",
+    "semi-spacing": "error",
+    "space-before-blocks": "error",
+    "space-before-function-paren": [
+      "error",
+      "never"
+    ],
+    "space-in-parens": "error",
+    "space-infix-ops": "error",
+    "space-unary-ops": "error",
+    "spaced-comment": "error"
+  }
+}
