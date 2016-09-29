@@ -26,10 +26,7 @@
       "error",
       2
     ],
-    "linebreak-style": [
-      "error",
-      "unix"
-    ],
+    "linebreak-style": "off",
     "eqeqeq": "error",
     "no-var": "error",
     "radix": "error",
