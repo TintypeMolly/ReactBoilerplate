@@ -7,7 +7,7 @@ import webpackDevMiddleware from "webpack-dev-middleware";
 import webpackHotMiddleware from "webpack-hot-middleware";
 
 import clean from "./clean";
-import {clientConfig, serverConfig} from "../webpack/webpack.config";
+import {clientConfig, serverConfig} from "../config/webpack.config";
 import {taskStart, taskEnd} from "./util";
 import {PORT, DEV_SERVER_PORT} from "../src/config.js";
 
