@@ -5,7 +5,7 @@ import {Router, browserHistory} from "react-router";
 import {syncHistoryWithStore, routerReducer} from "react-router-redux";
 import {createStore, combineReducers} from "redux";
 
-import ContextHolder from "./components/ContextHolder";
+import ContextHolder from "./components/structures/ContextHolder";
 import reducers from "./reducers";
 import routes from "./routes";
 

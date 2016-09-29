@@ -6,8 +6,8 @@ import ReactDOM from "react-dom/server";
 import {match, RouterContext} from "react-router";
 
 import assets from "./assets"; // eslint-disable-line import/no-unresolved
-import ContextHolder from "./components/ContextHolder";
-import Html from "./components/Html";
+import ContextHolder from "./components/structures/ContextHolder";
+import Html from "./components/structures/Html";
 import routes from "./routes";
 import {PORT, DEFAULT_TITLE} from "./config";
 
