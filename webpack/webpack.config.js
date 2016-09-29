@@ -31,7 +31,7 @@ const baseConfig = {
           cacheDirectory: !isProduction,
           babelrc: false,
           ...babelrc(isProduction),
-        }
+        },
       },
       {
         test: /\.css$/,
@@ -76,7 +76,7 @@ const baseConfig = {
     chunkModules: isVerbose,
     cached: isVerbose,
     cachedAssets: isVerbose,
-  }
+  },
 };
 
 const clientConfig = Object.assign({}, deepcopy(baseConfig), {
@@ -149,11 +149,9 @@ if (!isProduction) {
   serverConfig.module.loaders[0].query.plugins = ["transform-runtime"];
   clientConfig.module.loaders[0].query.plugins.unshift("react-hot-loader/babel");
   serverConfig.module.loaders[0].query.plugins.unshift("react-hot-loader/babel");
-  console.log(clientConfig.module.loaders[0].query.plugins);
-  console.log(serverConfig.module.loaders[0].query.plugins);
 }
 
 export {
   clientConfig,
-  serverConfig
+  serverConfig,
 };

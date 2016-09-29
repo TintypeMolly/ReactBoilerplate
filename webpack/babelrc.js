@@ -13,7 +13,7 @@ const developmentPlugins = [
     }, {
       transform: "react-transform-catch-errors",
       imports: ["react", "redbox-react"],
-    },],
+    }],
   }],
 ];
 
@@ -30,5 +30,5 @@ export default isProduction => {
       "react",
       "stage-0",
     ],
-  }
+  };
 };

@@ -44,7 +44,7 @@ const onRenderComplete = () => {
 
 const appContainer = document.getElementById("app");
 
-const render = (routes) => {
+const render = routes => {
   ReactDOM.render(
     <ContextHolder contextHandler={contextHandler}>
       <Provider store={store}>
@@ -60,7 +60,7 @@ render(routes);
 
 if (module.hot) {
   module.hot.accept("./routes", () => {
-    const routes = require('./routes').default;
+    const routes = require("./routes").default;
     render(routes);
   });
 }

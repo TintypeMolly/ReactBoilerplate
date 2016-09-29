@@ -11,7 +11,7 @@
     "start": "babel-node scripts/build.js",
     "build": "babel-node scripts/build.js --production",
     "clean": "babel-node scripts/clean.js",
-    "eslint": "eslint",
+    "eslint": "eslint --ignore-path .gitignore",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

@@ -11,7 +11,7 @@ import {clientConfig, serverConfig} from "../webpack/webpack.config";
 import {taskStart, taskEnd} from "./util";
 import {PORT, DEV_SERVER_PORT} from "../src/config.js";
 
-const build = (isProduction) => {
+const build = isProduction => {
   clean();
   taskStart("build");
   console.log(`Using ${isProduction ? "\"production\"" : "\"development\""} config...`);
@@ -52,8 +52,8 @@ const build = (isProduction) => {
           const monitor = nodemon({
             script: path.resolve(__dirname, "../build/server.js"),
           });
-          process.once('SIGINT', function () {
-            monitor.once('exit', function () {
+          process.once("SIGINT", function() {
+            monitor.once("exit", function() {
               process.exit();
             });
           });
@@ -77,6 +77,7 @@ const build = (isProduction) => {
   }
 };
 
+// hot module replacement
 if (require.main === module) {
   const isProduction = process.argv.includes("--production");
   build(isProduction);
