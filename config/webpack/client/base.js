@@ -32,7 +32,7 @@ const clientBaseConfig = {
   },
   output: {
     path: path.join(outputDir, "public"),
-    publicPath: "/public/",
+    publicPath: "/",
     filename: "client.[hash].js",
     chunkFilename: "client.[hash].js",
   },

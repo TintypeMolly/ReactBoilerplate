@@ -14,7 +14,7 @@ import {PORT, DEFAULT_TITLE} from "./config";
 const app = express();
 
 app.use(cookieParser());
-app.use("/public", express.static(path.join(__dirname, "public")));
+app.use("/", express.static(path.join(__dirname, "public")));
 
 app.get("*", (req, res, next) => {
   match({routes: routes, location: req.url}, (err, redirect, props) => {
