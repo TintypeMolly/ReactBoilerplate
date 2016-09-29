@@ -8,7 +8,7 @@
   "description": "my small react boilerplate",
   "main": "src/server.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=development babel-node scripts/build.js",
+    "start": "cross-env NODE_ENV=development babel-node scripts/start.js",
     "build": "cross-env NODE_ENV=production babel-node scripts/build.js",
     "clean": "babel-node scripts/clean.js",
     "eslint": "eslint --ignore-path .gitignore",
