@@ -1,3 +1,6 @@
 node_modules/
+
+# build results
 build/
 src/public/favicon/
+src/components/structures/Html/favicon.js

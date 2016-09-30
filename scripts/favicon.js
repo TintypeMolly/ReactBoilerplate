@@ -33,12 +33,17 @@ if (require.main === module) {
       }
       for (const file of response.files) {
         const filename = path.join(outputDir, file.name);
-        fs.writeFile(filename, file.contents);
+        fs.writeFileSync(filename, file.contents);
       }
-      console.log("Put these elements into <head>");
-      for (const element of response.html) {
-        console.log(element);
+      const faviconJs = path.resolve(__dirname, "../src/components/structures/Html/favicon.js");
+      const contents = ["import React from \"react\";\nexport default [\n"];
+      for (let idx = 0; idx < response.html.length; idx += 1) {
+        const el = response.html[idx];
+        const replaced = el.replace(/^(<[^ ]+)([^>]*)>$/, (a, b, c) => `  ${b} key=\{${idx}\}${c}/>,\n`);
+        contents.push(replaced);
       }
+      contents.push("];\n");
+      fs.outputFileSync(faviconJs, contents.join(""));
       taskEnd("favicon");
     }
   });
