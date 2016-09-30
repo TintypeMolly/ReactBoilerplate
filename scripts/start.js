@@ -11,12 +11,14 @@ import {DEV_SERVER_PORT} from "../config";
 import {PORT} from "../src/config";
 import clean from "./clean";
 import {taskStart, taskEnd} from "./util";
+import {copyFavicons} from "./favicon";
 
 const clientCompiler = webpack(clientConfig);
 const serverCompiler = webpack(serverConfig);
 let isServerRunning = false;
 
 clean();
+copyFavicons();
 
 taskStart("start");
 clientCompiler.run((err, stats) => {
