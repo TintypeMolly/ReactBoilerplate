@@ -8,6 +8,7 @@
   "description": "my small react boilerplate",
   "main": "src/server.js",
   "scripts": {
+    "favicon": "babel-node scripts/favicon.js",
     "start": "cross-env NODE_ENV=development babel-node scripts/start.js",
     "build": "cross-env NODE_ENV=production babel-node scripts/build.js",
     "clean": "babel-node scripts/clean.js",
@@ -64,6 +65,7 @@
     "css-loader": "^0.25.0",
     "eslint": "^3.6.0",
     "eslint-plugin-react": "^6.3.0",
+    "favicons": "^4.8.3",
     "file-loader": "^0.9.0",
     "fs-extra": "^0.30.0",
     "isomorphic-style-loader": "^1.0.0",

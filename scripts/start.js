@@ -45,8 +45,8 @@ clientCompiler.run((err, stats) => {
       const monitor = nodemon({
         script: path.resolve(__dirname, "../build/server.js"),
       });
-      process.once("SIGINT", function () {
-        monitor.once("exit", function () {
+      process.once("SIGINT", () => {
+        monitor.once("exit", () => {
           process.exit();
         });
       });
