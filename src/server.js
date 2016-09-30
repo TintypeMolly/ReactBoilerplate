@@ -33,11 +33,19 @@ app.get("*", (req, res, next) => {
           context.title = title;
         },
       };
-      const content = ReactDOM.renderToString(
+      const contentElement = (
         <ContextHolder contextHandler={contextHandler}>
           <RouterContext {...props}/>
         </ContextHolder>
       );
+      let statusCode = 200;
+      for (const r of contentElement.props.children.props.routes) {
+        if (r.name === "404") {
+          statusCode = 404;
+          break;
+        }
+      }
+      const content = ReactDOM.renderToString(contentElement);
       const html = ReactDOM.renderToStaticMarkup(
         <Html
           title={context.title}
@@ -46,13 +54,10 @@ app.get("*", (req, res, next) => {
           script={assets.main.js}
         />
       );
-      res.status(200);
+      res.status(statusCode);
       res.send(`<!DOCTYPE html>${html}`);
     } else {
-      // TODO
-      const errorNotFound = new Error("Page Not Found");
-      errorNotFound.status = 404;
-      next();
+      // won't happen
     }
   });
 });
