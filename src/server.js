@@ -58,10 +58,15 @@ app.get("*", (req, res, next) => {
 });
 
 app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
-                                   // TODO
   console.error(err); // eslint-disable-line no-console
   res.status(err.status || 500);
-  res.send("error");
+  if (process.env.NODE_ENV === "development") {
+    // TODO pretty debug info
+    res.send(err);
+  } else {
+    // TODO internal server error page
+    res.send("error");
+  }
 });
 
 app.listen(PORT, () => {
