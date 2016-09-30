@@ -6,52 +6,65 @@ import nodemon from "nodemon";
 import browserSync from "browser-sync";
 
 import {clientConfig, serverConfig} from "../config/webpack";
-import {handleWebpackError} from "./util";
 import {DEV_SERVER_PORT} from "../config";
 import {PORT} from "../src/config";
 import clean from "./clean";
-import {taskStart, taskEnd} from "./util";
-import {copyFavicons} from "./favicon";
+import {taskStart, taskEnd, catchPromiseReject} from "./util";
+import {copyFavicon} from "./favicon";
 
-const clientCompiler = webpack(clientConfig);
-const serverCompiler = webpack(serverConfig);
-let initialBuild = true;
+const start = async() => {
+  await clean();
+  await copyFavicon();
+  taskStart("start");
 
-clean();
-copyFavicons();
+  const clientCompiler = webpack(clientConfig);
+  const serverCompiler = webpack(serverConfig);
+  let initialBuild = true;
 
-taskStart("start");
-
-const handleError = (err, stats, reject) => {
-  if (err) {
-    reject(err);
-  }
-  const jsonStats = stats.toJson();
-  if (jsonStats.errors.length > 0) {
-    reject(jsonStats.errors);
-  }
-};
-
-const clientBuild = new Promise((resolve, reject) => {
-  clientCompiler.run((err, stats) => {
-    handleError(err, stats, reject);
-    resolve();
-  });
-});
-
-const serverBuild = new Promise((resolve, reject) => {
-  serverCompiler.watch({}, (err, stats) => {
-    handleError(err, stats, reject);
-    if (initialBuild) {
-      initialBuild = false;
-      resolve();
-    } else {
-      serverCompiler.run(handleWebpackError);
+  const handleError = (err, stats, reject) => {
+    if (err) {
+      reject(err);
     }
-  });
-});
+    const jsonStats = stats.toJson();
+    if (jsonStats.errors.length > 0) {
+      reject(jsonStats.errors);
+    }
+  };
 
-Promise.all([clientBuild, serverBuild]).then(() => {
+  const clientBuild = new Promise((resolve, reject) => {
+    clientCompiler.run((err, stats) => {
+      handleError(err, stats, reject);
+      resolve();
+    });
+  });
+
+  const serverBuild = new Promise((resolve, reject) => {
+    serverCompiler.watch({}, (err, stats) => {
+      handleError(err, stats, reject);
+      if (initialBuild) {
+        initialBuild = false;
+        resolve();
+      } else {
+        serverCompiler.run((err, stats) => {
+          if (err) {
+            // eslint-disable-next-line no-console
+            console.error(err);
+            process.exit(1);
+          }
+          const jsonStats = stats.toJson();
+          if (jsonStats.errors.length > 0) {
+            for (const err of jsonStats.errors) {
+              // eslint-disable-next-line no-console
+              console.error(err);
+            }
+            process.exit(1);
+          }
+        });
+      }
+    });
+  });
+
+  await Promise.all([clientBuild, serverBuild]);
   taskEnd("start");
 
   // run browsersync
@@ -77,4 +90,8 @@ Promise.all([clientBuild, serverBuild]).then(() => {
       process.exit();
     });
   });
-});
+};
+
+if (require.main === module) {
+  catchPromiseReject(start());
+}

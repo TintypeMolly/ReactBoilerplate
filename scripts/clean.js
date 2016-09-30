@@ -1,18 +1,18 @@
 /* eslint-disable no-console */
-import fs from "fs-extra";
+import fs from "fs-extra-promise";
 import path from "path";
-import {taskStart, taskEnd} from "./util";
+import {taskStart, taskEnd, catchPromiseReject} from "./util";
 
-const clean = () => {
+const clean = async() => {
   taskStart("clean");
   const buildPath = path.resolve(__dirname, "../build");
-  fs.removeSync(buildPath);
+  await fs.removeAsync(buildPath);
   console.log(`Removed ${buildPath}`);
   taskEnd("clean");
 };
 
 if (require.main === module) {
-  clean();
+  catchPromiseReject(clean());
 }
 
 export default clean;

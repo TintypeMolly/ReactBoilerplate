@@ -2,26 +2,35 @@ import webpack from "webpack";
 
 import clean from "./clean";
 import {clientConfig, serverConfig} from "../config/webpack";
-import {taskStart, taskEnd, handleWebpackError} from "./util";
-import {copyFavicons} from "./favicon";
+import {taskStart, taskEnd, catchPromiseReject} from "./util";
+import {copyFavicon} from "./favicon";
 
-const build = () => {
-  clean();
-  copyFavicons();
+const build = async() => {
+  await clean();
+  await copyFavicon();
   taskStart("build");
   // eslint-disable-next-line no-console
   console.log(`Using ${process.env.NODE_ENV} config...`);
 
   const configs = [clientConfig, serverConfig];
   const bundler = webpack(configs);
-  bundler.run((err, stats) => {
-    handleWebpackError(err, stats);
-    taskEnd("build");
+  await new Promise((resolve, reject) => {
+    bundler.run((err, stats) => {
+      if (err) {
+        reject(err);
+      }
+      const jsonStats = stats.toJson();
+      if (jsonStats.errors.length > 0) {
+        reject(jsonStats.errors);
+      }
+      resolve();
+    });
   });
+  taskEnd("build");
 };
 
 if (require.main === module) {
-  build();
+  catchPromiseReject(build());
 }
 
 export default build;
