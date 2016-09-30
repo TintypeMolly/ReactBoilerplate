@@ -3,7 +3,7 @@ import fs from "fs-extra";
 import favicons from "favicons";
 
 import packageJson from "../package.json";
-import {FAVICON} from "../config";
+import {FAVICON} from "../src/config";
 import {taskStart, taskEnd} from "./util";
 
 /* eslint-disable no-console */
