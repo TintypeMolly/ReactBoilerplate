@@ -9,7 +9,7 @@ import {taskStart, taskEnd, catchPromiseReject} from "./util";
 /* eslint-disable no-console */
 
 const outputDir = path.resolve(__dirname, "../src/public/favicon");
-const faviconJs = path.resolve(__dirname, "../src/components/structures/Html/favicon.js");
+const faviconJson = path.resolve(__dirname, "../src/components/structures/Html/favicon.json");
 
 const generateFavicon = async() => {
   taskStart("favicon");
@@ -43,29 +43,17 @@ const generateFavicon = async() => {
   });
   await fs.removeAsync(outputDir);
   await fs.mkdirsAsync(outputDir);
-  const promises = [];
-  for (const image of response.images) {
-    const filename = path.join(outputDir, image.name);
-    promises.push(fs.outputFile(filename, image.contents));
-  }
-  for (const file of response.files) {
-    const filename = path.join(outputDir, file.name);
-    promises.push(fs.outputFile(filename, file.contents));
-  }
-  const contents = ["import React from \"react\";\nexport default [\n"];
-  for (let idx = 0; idx < response.html.length; idx += 1) {
-    const el = response.html[idx];
-    const replaced = el.replace(/^(<[^ ]+)([^>]*)>$/, (a, b, c) => `  ${b} key=\{${idx}\}${c}/>,\n`);
-    contents.push(replaced);
-  }
-  contents.push("];\n");
-  promises.push(fs.outputFile(faviconJs, contents.join("")));
+  const promises = [
+    ...response.images.map(x => fs.outputFile(path.join(outputDir, x.name), x.contents)),
+    ...response.files.map(x => fs.outputFile(path.join(outputDir, x.name), x.contents)),
+    fs.outputFile(faviconJson, JSON.stringify(response.html)),
+  ];
   await Promise.all(promises);
   taskEnd("favicon");
 };
 
 const copyFavicon = async() => {
-  const faviconExists = await fs.existsAsync(faviconJs);
+  const faviconExists = await fs.existsAsync(faviconJson);
   if (!faviconExists) {
     // eslint-disable-next-line no-console
     console.warn("favicon is not built. Generating favicon...");
@@ -84,6 +72,8 @@ if (require.main === module) {
 }
 
 export {
+  outputDir as faviconOutputDir,
+  faviconJson,
   generateFavicon,
   copyFavicon,
 };

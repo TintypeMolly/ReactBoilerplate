@@ -26,6 +26,8 @@ app.get("*", (req, res, next) => {
       const context = {
         css: new Set(),
         title: DEFAULT_TITLE,
+        content: undefined,
+        script: assets.main.js,
       };
       const contextHandler = {
         insertCss: (...styles) => styles.forEach(style => context.css.add(style._getCss())),
@@ -45,17 +47,10 @@ app.get("*", (req, res, next) => {
           break;
         }
       }
-      const content = ReactDOM.renderToString(contentElement);
-      const html = ReactDOM.renderToStaticMarkup(
-        <Html
-          title={context.title}
-          content={content}
-          style={[...context.css].join("")}
-          script={assets.main.js}
-        />
-      );
+      context.content = ReactDOM.renderToString(contentElement);
+      const html = Html(context);
       res.status(statusCode);
-      res.send(`<!DOCTYPE html>${html}`);
+      res.send(html);
     } else {
       // won't happen
     }

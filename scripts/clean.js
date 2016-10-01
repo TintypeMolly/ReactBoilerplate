@@ -2,6 +2,7 @@
 import fs from "fs-extra-promise";
 import path from "path";
 import {taskStart, taskEnd, catchPromiseReject} from "./util";
+import {faviconJson, faviconOutputDir} from "./favicon";
 
 const clean = async() => {
   taskStart("clean");
@@ -15,8 +16,8 @@ if (require.main === module) {
   catchPromiseReject(clean()).then(() => {
     // remove favicon build as well if --all was given
     if (process.argv.includes("--all")) {
-      fs.removeAsync(path.resolve(__dirname, "../src/public/favicon"));
-      fs.removeAsync(path.resolve(__dirname, "../src/components/structures/Html/favicon.js"));
+      fs.removeAsync(faviconOutputDir);
+      fs.removeAsync(faviconJson);
     }
   });
 }

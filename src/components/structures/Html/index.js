@@ -1,20 +1,19 @@
-import React from "react";
+import favicon from "./favicon.json";
 
-import favicon from "./favicon";
-
-const Html = props => (
-  <html>
+const Html = ({title, css, content, script}) => `
+<!DOCTYPE html>
+<html>
   <head>
-    <title>{props.title}</title>
-    <meta charSet="utf-8"/>
-    {favicon}
-    {props.style && <style id="css" dangerouslySetInnerHTML={{__html: props.style}}/>}
+    <title>${title}</title>
+    <meta charset="utf-8"/>
+    ${favicon.join("")}
+    ${css && css.size > 0 ? `<style id="css">${[...css].join("")}</style>` : ""}
   </head>
   <body>
-  <div id="app" dangerouslySetInnerHTML={{__html: props.content}}></div>
-  {props.script && <script src={props.script}/>}
+    <div id="app">${content}</div>
+    ${script ? `<script src="${script}"></script>` : ""}
   </body>
-  </html>
-);
+</html>
+`;
 
 export default Html;
