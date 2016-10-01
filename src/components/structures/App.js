@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 import normalize from "normalize.css/normalize.css";
 import withStyles from "isomorphic-style-loader/lib/withStyles";
 
