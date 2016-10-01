@@ -21,6 +21,8 @@ const store = createStore(
 // Create an enhanced history that syncs navigation events with the store
 const history = syncHistoryWithStore(browserHistory, store);
 
+const findMetaTag = name => document.head.querySelector(`meta[name=${name}]`);
+
 const contextHandler = {
   insertCss: (...styles) => {
     const removeCss = styles.map(style => style._insertCss());
@@ -28,9 +30,23 @@ const contextHandler = {
   },
   setTitle: title => {
     const previousTitle = document.title;
+    const ogTitle = findMetaTag("og:title");
     document.title = title;
+    ogTitle.setAttribute("content", title);
     return () => {
       document.title = previousTitle;
+      ogTitle.setAttribute("content", previousTitle);
+    };
+  },
+  setDescription: description => {
+    const descriptionEl = findMetaTag("description");
+    const ogDescription = findMetaTag("og:description");
+    const previousDescription = description.getAttribute("content");
+    descriptionEl.setAttribute("content", description);
+    ogDescription.setAttribute("content", description);
+    return () => {
+      descriptionEl.setAttribute("content", previousDescription);
+      ogDescription.setAttribute("content", previousDescription);
     };
   },
 };

@@ -9,7 +9,7 @@ import assets from "./assets"; // eslint-disable-line import/no-unresolved
 import ContextHolder from "./components/structures/ContextHolder";
 import Html from "./components/structures/Html";
 import routes from "./routes";
-import {PORT, DEFAULT_TITLE} from "./config";
+import {PORT, DEFAULT_TITLE, DEFAULT_DESCRIPTION} from "./config";
 
 const app = express();
 
@@ -26,6 +26,7 @@ app.get("*", (req, res, next) => {
       const context = {
         css: new Set(),
         title: DEFAULT_TITLE,
+        description: DEFAULT_DESCRIPTION,
         content: undefined,
         script: assets.main.js,
       };
@@ -33,6 +34,9 @@ app.get("*", (req, res, next) => {
         insertCss: (...styles) => styles.forEach(style => context.css.add(style._getCss())),
         setTitle: title => {
           context.title = title;
+        },
+        setDescription: description => {
+          context.description = description;
         },
       };
       const contentElement = (

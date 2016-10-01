@@ -3,6 +3,7 @@ import {Component, PropTypes, Children} from "react";
 const contextShape = {
   insertCss: PropTypes.func,
   setTitle: PropTypes.func,
+  setDescription: PropTypes.func,
 };
 
 class ContextHolder extends Component {
@@ -16,6 +17,7 @@ class ContextHolder extends Component {
     return {
       insertCss: this.props.contextHandler.insertCss,
       setTitle: this.props.contextHandler.setTitle,
+      setDescription: this.props.contextHandler.setDescription,
     };
   }
 
