@@ -4,7 +4,7 @@ const taskEnd = name => console.log(`-----  task "${name}" ended  -----`);
 /* eslint-enable no-console */
 
 const catchPromiseReject = promise => {
-  promise.catch(error => {
+  return promise.catch(error => {
     // eslint-disable-next-line no-console
     console.log(error);
     process.exit(1);
