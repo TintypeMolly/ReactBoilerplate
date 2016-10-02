@@ -13,6 +13,14 @@ So I decided to make a very simple and easy universal react app boilerplate.
 ## How to use
 
 This is **not a library** so don't put this on `dependencies` or `devDependencies`.  
+A rough guideline is like this.
+
+1. Edit `package.json` and `src/config.js` with your project name and description.
+2. Edit the page structures in `src/components/structures`.
+3. Add some pages on `src/components/pages`.
+4. Add that pages into route, which is `src/routes.js`.
+5. `npm start` to run in development mode with HMR.
+6. `npm run build` to release.
 
 ### Quick Start
 
