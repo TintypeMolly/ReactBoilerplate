@@ -13,7 +13,8 @@ So I decided to make a very simple and easy universal react app boilerplate.
 ## How to use
 
 This is **not a library** so don't put this on `dependencies` or `devDependencies`.  
-A rough guideline is like this.
+
+### A ruogh guideline
 
 1. Edit `package.json` and `src/config.js` with your project name and description.
 2. Edit the page structures in `src/components/structures`.
