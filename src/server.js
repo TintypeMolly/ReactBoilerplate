@@ -4,6 +4,7 @@ import path from "path";
 import React from "react";
 import ReactDOM from "react-dom/server";
 import {match, RouterContext} from "react-router";
+import Minimize from "minimize";
 
 import assets from "./assets"; // eslint-disable-line import/no-unresolved
 import ContextHolder from "./components/structures/ContextHolder";
@@ -12,6 +13,7 @@ import routes from "./routes";
 import {PORT, DEFAULT_TITLE, DEFAULT_DESCRIPTION} from "./config";
 
 const app = express();
+const minimize = new Minimize();
 
 app.use(cookieParser());
 app.use("/", express.static(path.join(__dirname, "public")));
@@ -54,7 +56,7 @@ app.get("*", (req, res, next) => {
       context.content = ReactDOM.renderToString(contentElement);
       const html = Html(context);
       res.status(statusCode);
-      res.send(html);
+      res.send(minimize.parse(html));
     } else {
       // won't happen
     }
