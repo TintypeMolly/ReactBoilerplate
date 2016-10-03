@@ -11,7 +11,7 @@ const Html = ({title, css, content, script, description, metaContext}) => `
     ${css && css.size > 0 ? `<style id="css">${[...css].join("")}</style>` : ""}
     ${description ? `<meta name="description" content="${description}" />` : ""}
     ${description ? `<meta name="og:description" content="${description}" />` : ""}
-    ${metaContext ? Object.keys(metaContext).map(name => `<meta name="${name}" content="${metaContext[name]}"/>`).join("") : ""}
+    ${metaContext ? Object.keys(metaContext).map(name => `<meta name="${name}" content="${metaContext[name]}" data-create="server"/>`).join("") : ""}
     ${favicon.join("")}
   </head>
   <body>

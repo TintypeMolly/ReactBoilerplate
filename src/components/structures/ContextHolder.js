@@ -4,6 +4,7 @@ const contextShape = {
   insertCss: PropTypes.func,
   setTitle: PropTypes.func,
   setDescription: PropTypes.func,
+  setMeta: PropTypes.func,
 };
 
 class ContextHolder extends Component {
@@ -18,6 +19,7 @@ class ContextHolder extends Component {
       insertCss: this.props.contextHandler.insertCss,
       setTitle: this.props.contextHandler.setTitle,
       setDescription: this.props.contextHandler.setDescription,
+      setMeta: this.props.contextHandler.setMeta,
     };
   }
 

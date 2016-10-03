@@ -21,7 +21,7 @@ const store = createStore(
 // Create an enhanced history that syncs navigation events with the store
 const history = syncHistoryWithStore(browserHistory, store);
 
-const findMetaTag = name => document.head.querySelector(`meta[name=${name}]`);
+const findMetaTag = name => document.head.querySelector(`meta[name="${name}"]`);
 
 const contextHandler = {
   insertCss: (...styles) => {
@@ -47,6 +47,30 @@ const contextHandler = {
     return () => {
       descriptionEl.setAttribute("content", previousDescription);
       ogDescription.setAttribute("content", previousDescription);
+    };
+  },
+  setMeta: (name, content) => {
+    let metaElement = findMetaTag(name);
+    if (metaElement.getAttribute("data-create") === "server") {
+      metaElement.parentNode.removeChild(metaElement);
+      metaElement = null;
+    }
+    const previousValue = metaElement ? metaElement.getAttribute("content") : null;
+    let newElement;
+    if (!previousValue) {
+      newElement = document.createElement("meta");
+      newElement.setAttribute("name", name);
+      newElement.setAttribute("content", content);
+      document.head.appendChild(newElement);
+    } else {
+      metaElement.setAttribute("content", content);
+    }
+    return () => {
+      if (!previousValue) {
+        newElement.parentNode.removeChild(newElement);
+      } else {
+        metaElement.setAttribute("content", content);
+      }
     };
   },
 };

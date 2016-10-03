@@ -83,8 +83,7 @@ You can edit eslint config on `.eslintrc.json`.
 
 ## TODOs
 
-1. Meta tag control(og:image, og:video, ...,, etc.)
-2. Isomorphic fetch
-3. Build a fine redux example
-4. Design a sample homepage
-5. Add test framework
+1. Isomorphic fetch
+2. Build a fine redux example
+3. Design a sample homepage
+4. Add test framework

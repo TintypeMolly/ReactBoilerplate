@@ -31,6 +31,7 @@ app.get("*", (req, res, next) => {
         description: DEFAULT_DESCRIPTION,
         content: undefined,
         script: assets.main.js,
+        metaContext: {},
       };
       const contextHandler = {
         insertCss: (...styles) => styles.forEach(style => context.css.add(style._getCss())),
@@ -39,6 +40,9 @@ app.get("*", (req, res, next) => {
         },
         setDescription: description => {
           context.description = description;
+        },
+        setMeta: (name, content) => {
+          context.metaContext[name] = content;
         },
       };
       const contentElement = (
