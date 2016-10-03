@@ -8,7 +8,7 @@ import {taskStart, taskEnd, catchPromiseReject} from "./util";
 
 /* eslint-disable no-console */
 
-const outputDir = path.resolve(__dirname, "../src/public/favicon");
+const outputDir = path.resolve(__dirname, "../favicon_build");
 const faviconJson = path.resolve(__dirname, "../src/components/structures/Html/favicon.json");
 
 const generateFavicon = async() => {

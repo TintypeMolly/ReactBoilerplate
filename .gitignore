@@ -2,5 +2,5 @@ node_modules/
 
 # build results
 build/
-src/public/favicon/
+favicon_build/
 src/components/structures/Html/favicon.json
