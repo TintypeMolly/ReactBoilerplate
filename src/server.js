@@ -2,8 +2,11 @@ import cookieParser from "cookie-parser";
 import express from "express";
 import path from "path";
 import React from "react";
+import {Provider} from "react-redux";
 import ReactDOM from "react-dom/server";
 import {match, RouterContext} from "react-router";
+import {routerReducer} from "react-router-redux";
+import {createStore, combineReducers} from "redux";
 import Minimize from "minimize";
 
 import assets from "./assets"; // eslint-disable-line import/no-unresolved
@@ -11,9 +14,17 @@ import ContextHolder from "./components/structures/ContextHolder";
 import Html from "./components/structures/Html";
 import routes from "./routes";
 import {PORT, DEFAULT_TITLE, DEFAULT_DESCRIPTION} from "./config";
+import reducers from "./reducers";
 
 const app = express();
 const minimize = new Minimize();
+
+const store = createStore(
+  combineReducers({
+    ...reducers,
+    routing: routerReducer,
+  })
+);
 
 app.use(cookieParser());
 app.use("/", express.static(path.join(__dirname, "public")));
@@ -32,6 +43,7 @@ app.get("*", (req, res, next) => {
         content: undefined,
         script: assets.main.js,
         metaContext: {},
+        preloadedState: undefined,
       };
       const contextHandler = {
         insertCss: (...styles) => styles.forEach(style => context.css.add(style._getCss())),
@@ -47,17 +59,20 @@ app.get("*", (req, res, next) => {
       };
       const contentElement = (
         <ContextHolder contextHandler={contextHandler}>
-          <RouterContext {...props}/>
+          <Provider store={store}>
+            <RouterContext {...props}/>
+          </Provider>
         </ContextHolder>
       );
       let statusCode = 200;
-      for (const r of contentElement.props.children.props.routes) {
+      for (const r of contentElement.props.children.props.children.props.routes) {
         if (r.name === "404") {
           statusCode = 404;
           break;
         }
       }
       context.content = ReactDOM.renderToString(contentElement);
+      context.preloadedState = store.getState();
       const html = Html(context);
       res.status(statusCode);
       res.send(minimize.parse(html));

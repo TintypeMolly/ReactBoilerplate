@@ -1,6 +1,6 @@
 import favicon from "./favicon.json";
 
-const Html = ({title, css, content, script, description, metaContext}) => `
+const Html = ({title, css, content, script, description, metaContext, preloadedState}) => `
 <!DOCTYPE html>
 <html>
   <head>
@@ -16,6 +16,7 @@ const Html = ({title, css, content, script, description, metaContext}) => `
   </head>
   <body>
     <div id="app">${content}</div>
+    ${preloadedState ? `<script>window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState)};</script>` : ""}
     ${script ? `<script src="${script}"></script>` : ""}
   </body>
 </html>

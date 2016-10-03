@@ -15,7 +15,8 @@ const store = createStore(
   combineReducers({
     ...reducers,
     routing: routerReducer,
-  })
+  }),
+  window.__PRELOADED_STATE__
 );
 
 // Create an enhanced history that syncs navigation events with the store
