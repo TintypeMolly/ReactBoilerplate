@@ -73,9 +73,9 @@ But if you want to manually build your favicon, run this command.
 
 ```
 npm run eslint .                  # run eslint on current directory
-npm run eslint -- .               # same with above
+npm run eslint -- .               # same as above
 npm run eslint some/src/path      # run eslint on some/src/path
-npm run eslint -- some/src/path   # same with above
+npm run eslint -- some/src/path   # same as above
 npm run eslint -- . --fix         # fix at the same time
 ```
 
