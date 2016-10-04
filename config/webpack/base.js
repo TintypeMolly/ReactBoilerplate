@@ -31,7 +31,7 @@ const baseConfig = {
       {test: /\.json/, loader: "json-loader"},
       {test: /\.txt/, loader: "raw-loader"},
       {
-        test: /\.(png|jpg|jpeg|gif|svg)$/,
+        test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
         loader: "url-loader",
         query: {
           name: "[name].[hash].[ext]",
