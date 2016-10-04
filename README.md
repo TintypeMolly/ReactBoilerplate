@@ -83,7 +83,6 @@ You can edit eslint config on `.eslintrc.json`.
 
 ## TODOs
 
-1. Isomorphic fetch
-2. Build a fine redux example
-3. Design a sample homepage
-4. Add test framework
+1. Build a fine redux example
+2. Design a sample homepage
+3. Add test framework
