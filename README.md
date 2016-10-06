@@ -28,7 +28,7 @@ This is **not a library** so don't put this on `dependencies` or `devDependencie
 ```
 git clone git+https://github.com/TintypeMolly/react-boilerplate.git
 mv react-boilerplate <your_project_name>
-cd your_project_name
+cd <your_project_name>
 npm install
 npm start
 ```
