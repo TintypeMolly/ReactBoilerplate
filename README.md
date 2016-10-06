@@ -1,6 +1,6 @@
 # react-boilerplate
 
-My small react boilerplate.  
+My little react boilerplate.  
 I want to make a universal(isomorphic) app project template using [react](https://facebook.github.io/react/) and [redux](http://redux.js.org/).  
 This repo is hugely influenced by [react-starter-kit](https://github.com/kriasoft/react-starter-kit) of [Kriasoft](https://github.com/kriasoft).
 
