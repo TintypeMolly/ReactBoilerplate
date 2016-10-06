@@ -1,5 +1,9 @@
 # react-boilerplate
 
+[![Build Status](https://travis-ci.org/sapphiredev/react-boilerplate.svg?branch=master)](https://travis-ci.org/sapphiredev/react-boilerplate)
+[![Coverage Status](https://coveralls.io/repos/github/sapphiredev/react-boilerplate/badge.svg?branch=master)](https://coveralls.io/github/sapphiredev/react-boilerplate?branch=master)
+[![Dependency Status](https://gemnasium.com/badges/github.com/sapphiredev/react-boilerplate.svg)](https://gemnasium.com/github.com/sapphiredev/react-boilerplate)
+
 My little react boilerplate.  
 I want to make a universal(isomorphic) app project template using [react](https://facebook.github.io/react/) and [redux](http://redux.js.org/).  
 This repo is hugely influenced by [react-starter-kit](https://github.com/kriasoft/react-starter-kit) of [Kriasoft](https://github.com/kriasoft).

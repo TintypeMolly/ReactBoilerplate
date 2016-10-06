@@ -4,3 +4,7 @@ node_modules/
 build/
 favicon_build/
 src/components/structures/Html/favicon.json
+
+# test results
+coverage
+src/assets.js
