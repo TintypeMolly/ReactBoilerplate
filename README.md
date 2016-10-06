@@ -7,14 +7,14 @@ This repo is hugely influenced by [react-starter-kit](https://github.com/kriasof
 ## Why I made this
 
 I used [react-starter-kit](https://github.com/kriasoft/react-starter-kit) when I first met [node](https://nodejs.org/) and [react](https://facebook.github.io/react/), and found it too complicated to read.  
-I managed to publish an universal app with its help, but I still don't understand its structure.  
+I managed to publish a universal app with its help, but I still don't understand its structure.  
 So I decided to make a very simple and easy universal react app boilerplate.
 
 ## How to use
 
 This is **not a library** so don't put this on `dependencies` or `devDependencies`.  
 
-### A ruogh guideline
+### A rough guideline
 
 1. Edit `package.json` and `src/config.js` with your project name and description.
 2. Edit the page structures in `src/components/structures`.
@@ -44,7 +44,7 @@ node build/server.js
 
 `npm run build` builds the project into `/path/to/project/build`.  
 The build result doesn't depend on any other packages.  
-So you can just move it to other place and the run `node /some/path/server.js`.
+So you can just move it to another place and run `node /some/path/server.js`.
 
 ### Utilities
 
