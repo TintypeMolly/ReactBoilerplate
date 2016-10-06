@@ -1,7 +1,7 @@
 # react-boilerplate
 
 My small react boilerplate.  
-I want to make an universal(isomorphic) app project template using [react](https://facebook.github.io/react/) and [redux](http://redux.js.org/).  
+I want to make a universal(isomorphic) app project template using [react](https://facebook.github.io/react/) and [redux](http://redux.js.org/).  
 This repo is hugely influenced by [react-starter-kit](https://github.com/kriasoft/react-starter-kit) of [Kriasoft](https://github.com/kriasoft).
 
 ## Why I made this
@@ -56,7 +56,7 @@ npm run clean -- --all
 ```
 
 You can clean your build result.  
-Given `--all` option to `npm run clean`, it will delete build result of favicon too.  
+Given `--all` option to `npm run clean`, it will delete the build result of favicon too.  
 Without it, it removes `build/` only.
 
 #### favicon
@@ -65,9 +65,9 @@ Without it, it removes `build/` only.
 npm run favicon
 ```
 
-This project builds many different sizes of favicon using [favicons](https://github.com/haydenbleasel/favicons).  
-`npm run build` automatically builds favicon when favicon meta file doesn't exist.  
-But if you want to manually build your favicon, run this command.
+This project builds many different sizes of favicons using [favicons](https://github.com/haydenbleasel/favicons).  
+`npm run build` automatically builds favicon if favicon meta file doesn't exist.  
+But if you want to manually build favicons, run this command.
 
 #### eslint
 
@@ -79,10 +79,10 @@ npm run eslint -- some/src/path   # same as above
 npm run eslint -- . --fix         # fix at the same time
 ```
 
-You can edit eslint config on `.eslintrc.json`.
+You can edit the eslint config on `.eslintrc.json`.
 
 ## TODOs
 
 1. Build a fine redux example
 2. Design a sample homepage
-3. Add test framework
+3. Add a test framework
