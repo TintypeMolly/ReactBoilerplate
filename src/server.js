@@ -46,7 +46,11 @@ app.get("*", (req, res, next) => {
         preloadedState: undefined,
       };
       const contextHandler = {
-        insertCss: (...styles) => styles.forEach(style => context.css.add(style._getCss())),
+        insertCss: (...styles) => styles.forEach(style => {
+          if(style._getCss !== undefined) {
+            context.css.add(style._getCss());
+          }
+        }),
         setTitle: title => {
           context.title = title;
         },
@@ -97,3 +101,5 @@ app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
 app.listen(PORT, () => {
   console.log(`listening on port http://localhost:${PORT}`); // eslint-disable-line no-console
 });
+
+module.exports = app;
