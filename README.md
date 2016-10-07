@@ -90,4 +90,3 @@ You can edit the eslint config on `.eslintrc.json`.
 
 1. Build a fine redux example
 2. Design a sample homepage
-3. Add a test framework
