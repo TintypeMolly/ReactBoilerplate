@@ -1,24 +1,34 @@
 /* eslint-disable no-console */
-import fs from "fs-extra-promise";
-import cp from "child-process-promise"
 import path from "path";
+import {exec, spawn} from "child-process-promise";
+import opn from "opn";
+
 import build from "./build";
 import {taskStart, taskEnd, catchPromiseReject} from "./util";
 
 const test = async() => {
   await build();
   taskStart("test");
-  const srcFilePath = path.resolve(__dirname, "../build/assets.js");
-  const dstFilePath = path.resolve(__dirname, "../src/assets.js");
-  await fs.copyAsync(srcFilePath, dstFilePath);
-  console.log(`Copied ${srcFilePath}`);
 
-  let res = await cp.exec("babel-node ./node_modules/.bin/babel-istanbul cover _mocha -- --compilers js:babel-core/register --require ignore-styles --colors --reporter dot test/");
-  console.log(res.stdout);
+  const istanbul = spawn("istanbul", ["cover", "./node_modules/.bin/_mocha", "--report", "json", "--", "--colors"]);
+  istanbul.childProcess.stdout.on("data", data => {
+    process.stdout.write(data.toString());
+  });
+  istanbul.childProcess.stderr.on("data", data => {
+    process.stderr.write(data.toString());
+  });
+  await istanbul;
 
-  await fs.removeAsync(srcFilePath);
-  console.log(`Deleted ${dstFilePath}`);
+  const remapBaseCommand = "remap-istanbul -i coverage/coverage-final.json -e assets,external,~,webpack";
+  await Promise.all([
+    exec(`${remapBaseCommand} -o coverage/html -t html`),
+    exec(`${remapBaseCommand} -o coverage/lcov.info -t lcovonly`),
+  ]);
+
   taskEnd("test");
+  opn(path.resolve(__dirname, "../coverage/html/index.html"), {
+    wait: false,
+  });
 };
 
 if (require.main === module) {

@@ -7,7 +7,11 @@ import {faviconJson, faviconOutputDir} from "./favicon";
 const clean = async() => {
   taskStart("clean");
   const buildPath = path.resolve(__dirname, "../build");
-  await fs.removeAsync(buildPath);
+  const coveragePath = path.resolve(__dirname, "../coverage");
+  await Promise.all([
+    fs.removeAsync(buildPath),
+    fs.removeAsync(coveragePath),
+  ]);
   console.log(`Removed ${buildPath}`);
   taskEnd("clean");
 };
