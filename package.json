@@ -52,7 +52,7 @@
   "devDependencies": {
     "assets-webpack-plugin": "^3.4.0",
     "babel-cli": "^6.14.0",
-    "babel-eslint": "^6.1.2",
+    "babel-eslint": "^7.0.0",
     "babel-loader": "^6.2.5",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-react-transform": "^2.0.2",
@@ -79,7 +79,7 @@
     "json-loader": "^0.5.4",
     "mocha": "^3.1.0",
     "nodemon": "^1.10.2",
-    "normalize.css": "^4.2.0",
+    "normalize.css": "^5.0.0",
     "opn": "^4.0.2",
     "raw-loader": "^0.5.1",
     "react-hot-loader": "^3.0.0-beta.5",
