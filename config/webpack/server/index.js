@@ -35,7 +35,7 @@ const serverConfig = {
     filename: "server.js",
     chunkFilename: "server.[name].js",
     libraryTarget: "commonjs2",
-    devtoolModuleFilenameTemplate: "[resource-path]",
+    devtoolModuleFilenameTemplate: "src/[resource-path]",
   },
   target: "node",
   externals: [
