@@ -10,7 +10,15 @@ const test = async() => {
   await build();
   taskStart("test");
 
-  const istanbul = spawn("istanbul", ["cover", "./node_modules/.bin/_mocha", "--report", "json", "--", "--colors"]);
+  const istanbul = spawn("babel-node", [
+    "./node_modules/istanbul/lib/cli",
+    "cover",
+    "./node_modules/.bin/_mocha",
+    "--report",
+    "json",
+    "--",
+    "--colors",
+  ]);
   istanbul.childProcess.stdout.on("data", data => {
     process.stdout.write(data.toString());
   });
