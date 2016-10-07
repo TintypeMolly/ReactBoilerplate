@@ -35,6 +35,7 @@ const serverConfig = {
     filename: "server.js",
     chunkFilename: "server.[name].js",
     libraryTarget: "commonjs2",
+    devtoolModuleFilenameTemplate: "[resource-path]",
   },
   target: "node",
   externals: [
@@ -42,7 +43,6 @@ const serverConfig = {
   ],
   plugins: [
     new webpack.DefinePlugin(globalConstants),
-    new webpack.BannerPlugin("require(\"source-map-support\").install();", {raw: true, entryOnly: false}),
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.LimitChunkCountPlugin({maxChunks: 1}),
   ],
