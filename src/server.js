@@ -8,6 +8,7 @@ import {match, RouterContext} from "react-router";
 import {routerReducer} from "react-router-redux";
 import {createStore, combineReducers} from "redux";
 import Minimize from "minimize";
+import http from "http";
 
 import assets from "./assets"; // eslint-disable-line import/no-unresolved
 import ContextHolder from "./components/structures/ContextHolder";
@@ -46,11 +47,7 @@ app.get("*", (req, res, next) => {
         preloadedState: undefined,
       };
       const contextHandler = {
-        insertCss: (...styles) => styles.forEach(style => {
-          if(style._getCss !== undefined) {
-            context.css.add(style._getCss());
-          }
-        }),
+        insertCss: (...styles) => styles.forEach(style => context.css.add(style._getCss())),
         setTitle: title => {
           context.title = title;
         },
@@ -98,8 +95,11 @@ app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   }
 });
 
-app.listen(PORT, () => {
+const server = http.createServer(app);
+
+if (require.main === module) {
   console.log(`listening on port http://localhost:${PORT}`); // eslint-disable-line no-console
-});
+  server.listen(PORT);
+}
 
 export default app;
