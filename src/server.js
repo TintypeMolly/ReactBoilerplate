@@ -45,6 +45,7 @@ app.get("*", (req, res, next) => {
         script: assets.main.js,
         metaContext: {},
         preloadedState: undefined,
+        status: 200,
       };
       const contextHandler = {
         insertCss: (...styles) => styles.forEach(style => context.css.add(style._getCss())),
@@ -57,6 +58,9 @@ app.get("*", (req, res, next) => {
         setMeta: (name, content) => {
           context.metaContext[name] = content;
         },
+        setStatus: status => {
+          context.status = status;
+        },
       };
       const contentElement = (
         <ContextHolder contextHandler={contextHandler}>
@@ -65,17 +69,10 @@ app.get("*", (req, res, next) => {
           </Provider>
         </ContextHolder>
       );
-      let statusCode = 200;
-      for (const r of contentElement.props.children.props.children.props.routes) {
-        if (r.name === "404") {
-          statusCode = 404;
-          break;
-        }
-      }
       context.content = ReactDOM.renderToString(contentElement);
       context.preloadedState = store.getState();
       const html = Html(context);
-      res.status(statusCode);
+      res.status(context.status);
       res.send(minimize.parse(html));
     } else {
       // won't happen

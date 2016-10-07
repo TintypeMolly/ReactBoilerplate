@@ -5,6 +5,7 @@ const contextShape = {
   setTitle: PropTypes.func,
   setDescription: PropTypes.func,
   setMeta: PropTypes.func,
+  setStatus: PropTypes.func,
 };
 
 class ContextHolder extends Component {
@@ -20,6 +21,7 @@ class ContextHolder extends Component {
       setTitle: this.props.contextHandler.setTitle,
       setDescription: this.props.contextHandler.setDescription,
       setMeta: this.props.contextHandler.setMeta,
+      setStatus: this.props.contextHandler.setStatus,
     };
   }
 

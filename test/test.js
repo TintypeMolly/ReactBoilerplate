@@ -1,9 +1,11 @@
-const request = require("supertest");
-const app = require("../build/server");
+import request from "supertest";
 
+import app from "../build/server";
+
+// eslint-disable-next-line no-undef
 describe("react-boilerplate", () => {
-  it("main page", function(done) {
-    this.timeout(100000);
-    request(app).get('/').expect(200, done);
+  // eslint-disable-next-line no-undef
+  it("main page", done => {
+    request(app).get("/").expect(200, done);
   });
 });
