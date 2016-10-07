@@ -102,4 +102,4 @@ app.listen(PORT, () => {
   console.log(`listening on port http://localhost:${PORT}`); // eslint-disable-line no-console
 });
 
-module.exports = app;
+export default app;
