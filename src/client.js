@@ -74,6 +74,7 @@ const contextHandler = {
       }
     };
   },
+  setStatus: () => {},
 };
 
 const onRenderComplete = () => {
