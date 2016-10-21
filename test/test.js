@@ -8,4 +8,7 @@ describe("react-boilerplate", () => {
   it("main page", done => {
     request(app).get("/").expect(200, done);
   });
+  it("display 404", done => {
+    request(app).get("/no_such_path").expect(404, done);
+  });
 });

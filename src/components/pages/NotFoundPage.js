@@ -6,7 +6,7 @@ class NotFoundPage extends Component {
   };
 
   componentWillMount() {
-    this.context.setStatus(400);
+    this.context.setStatus(404);
   }
 
   render() {
