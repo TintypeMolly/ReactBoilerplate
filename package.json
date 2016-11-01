@@ -45,7 +45,7 @@
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.5",
-    "react-router": "^2.8.1",
+    "react-router": "^3.0.0",
     "react-router-redux": "^4.0.6",
     "redux": "^3.6.0"
   },
@@ -67,7 +67,7 @@
     "browser-sync": "^2.16.0",
     "coveralls": "^2.11.14",
     "cross-env": "^3.0.0",
-    "cross-spawn": "^4.0.2",
+    "cross-spawn": "^5.0.0",
     "css-loader": "^0.25.0",
     "eslint": "^3.6.0",
     "eslint-plugin-react": "^6.3.0",
