@@ -6,8 +6,7 @@ import packageJson from "../package.json";
 import {FAVICON} from "../src/config";
 import {taskStart, taskEnd, catchPromiseReject} from "./util";
 
-/* eslint-disable no-console */
-
+const VERBOSE = process.argv.includes("--verbose");
 const outputDir = path.resolve(__dirname, "../favicon_build");
 const faviconJson = path.resolve(__dirname, "../src/components/structures/Html/favicon.json");
 
@@ -19,7 +18,6 @@ const generateFavicon = async() => {
     throw Error("Set FAVICON in src/config.js");
   }
   const faviconExists = await fs.existsAsync(FAVICON);
-  console.log(faviconExists);
   if (!faviconExists) {
     throw Error(`${FAVICON} does not exist. Set FAVICON properly in src/config.js`);
   }
@@ -32,7 +30,7 @@ const generateFavicon = async() => {
       developerURL: packageJson.homepage,
       background: "#fff",
       version: packageJson.version,
-      logging: true,
+      logging: VERBOSE,
     }, (error, response) => {
       if (error) {
         reject(error);
