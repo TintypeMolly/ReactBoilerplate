@@ -19,11 +19,16 @@ const build = async() => {
       if (err) {
         reject(err);
       }
-      const jsonStats = stats.toJson();
-      if (jsonStats.errors.length > 0) {
-        reject(jsonStats.errors);
+      if (!stats) {
+        // FIXME
+        resolve();
+      } else {
+        const jsonStats = stats.toJson();
+        if (jsonStats.errors.length > 0) {
+          reject(jsonStats.errors);
+        }
+        resolve();
       }
-      resolve();
     });
   });
   taskEnd("build");
